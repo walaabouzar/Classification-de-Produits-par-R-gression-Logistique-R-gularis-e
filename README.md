@@ -1,74 +1,80 @@
-# Classification-de-Produits-par-R-gression-Logistique-R-gularisé
-# 📊  Régression Logistique avec Régularisation
+# 📊 Régression Logistique avec Régularisation
 
-## 🔍 Objectif
+## 🎯 Objectif
 
-Mettre en œuvre une **régression logistique régularisée** afin de résoudre un problème de **classification binaire**. L’algorithme est entraîné pour prédire si un produit sera commercialisé ou non, à partir des résultats de deux tests de qualité.
-
-## 🗂️ Contenu des données
-
-Le fichier `data.csv` contient **118 exemples** avec les colonnes suivantes :
-
-1. Test 1 : Résultat du premier test de qualité
-2. Test 2 : Résultat du second test de qualité
-3. Commercialisation : Valeur cible `y` (1 = commercialisé, 0 = non commercialisé)
+Ce projet implémente un modèle de **régression logistique régularisée** pour résoudre un problème de **classification binaire**. L’objectif est de prédire la **commercialisation d’un produit** en fonction de deux tests de qualité (`Test 1` et `Test 2`).
 
 ---
 
-## ⚙️ Étapes principales
+## 📁 Contenu
 
-### 1. 📥 Chargement et préparation des données
-- Lecture du fichier CSV
-- Construction de la matrice des caractéristiques `X` avec ajout du biais (x₀ = 1)
-- Construction du vecteur `y`
-
-### 2. 🔄 Mapping polynomial
-- Transformation des caractéristiques en une forme polynomiale de degré 6
-- Génération de 28 nouvelles features
-
-### 3. 🧮 Implémentation de la régression logistique
-- Fonction `Sigmoid(z)`
-- Fonction de coût régularisée `computeCostReg`
-- Implémentation de `gradientDescent` avec régularisation
-
-### 4. 📉 Entraînement du modèle
-- Initialisation de `theta`
-- Entraînement avec descente du gradient
-- Visualisation de la fonction de coût au fil des itérations
-
-### 5. 🧪 Prédiction & Évaluation
-- Prédiction à l’aide d’un seuil (sigmoid > 0.5)
-- Calcul de la **précision du classifieur**
-- Affichage de la frontière de décision
-
-### 6. 🔍 Vérification
-- Comparaison possible avec la régression logistique de **scikit-learn**
+- `data.csv` : Jeu de données contenant 118 échantillons :
+  - Colonne 1 : Score du Test 1
+  - Colonne 2 : Score du Test 2
+  - Colonne 3 : Commercialisation (1 = Oui, 0 = Non)
+- `regularisation.ipynb` : Notebook Python contenant l’implémentation complète.
 
 ---
 
-## 📈 Résultats attendus
+## 🧱 Étapes principales
 
-- Une courbe de coût qui diminue progressivement.
-- Une frontière de décision non linéaire bien ajustée aux données.
-- Une précision élevée sur les données d’entraînement.
+### 1. 🔄 Prétraitement
+- Chargement des données
+- Ajout d’une colonne de biais
+- Séparation des variables explicatives `X` et de la cible `y`
+
+### 2. 🧮 Transformation polynomiale
+- Expansion des variables `X1` et `X2` jusqu’au **degré 6**
+- Génération de **28 caractéristiques** à partir des combinaisons polynomiales
+
+### 3. 📉 Régression logistique
+- Fonction `Sigmoid`
+- Fonction de coût avec **régularisation L2**
+- Implémentation de la **descente du gradient**
+
+### 4. 📈 Visualisation
+- Courbe de convergence du coût
+- Visualisation de la **frontière de décision**
+- Tracé 3D de la surface du coût
+
+### 5. 🔍 Prédiction
+- Fonction de prédiction binaire
+- Calcul de la **précision**
+- Comparaison des performances avec **Scikit-Learn**
 
 ---
 
-## 🧠 Pour aller plus loin
+## ✅ Résultats
 
-- Tester d'autres degrés de polynômes
-- Essayer différentes valeurs de régularisation `λ`
-- Implémenter la classification avec **Scikit-Learn** pour comparer
-- Ajouter une métrique F1-score ou matrice de confusion
-
----
-
-## 📎 Fichiers inclus
-
-- `data.csv` : Données d’apprentissage
-- `reg_log_reg.py` : Implémentation de la régression logistique
-- `README.md` : Fichier de documentation
+- Précision du modèle implémenté manuellement : **~83%**
+- Précision du modèle `LogisticRegression` de `scikit-learn` : **~83%**
+- Meilleur coût atteint ≈ **0.38** après 20 000 itérations avec `lambda=0.01` et `alpha=0.01`
 
 ---
 
+## 📚 Renforcement de l’apprentissage
+
+Le projet comprend :
+- Un découpage en **train / validation / test**
+- Une **courbe d’apprentissage**
+- Des visualisations supplémentaires pour mieux comprendre le comportement du modèle
+
+---
+
+## 🔧 Librairies utilisées
+
+- `NumPy`
+- `Matplotlib`
+- `Scikit-learn`
+- `SciPy`
+- `Pandas`
+
+---
+
+## 📌 Remarques
+
+- La régularisation permet d’éviter le **surapprentissage** dû à l’augmentation du nombre de caractéristiques.
+- L’évaluation a été réalisée à l’aide de **précision** et de la **fonction de coût régularisée**.
+
+---
 
